@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Swiper Wrapper Styling */
+.swiper {
+    width: 100%;
+    padding-top: 60px;
+    padding-bottom: 90px;
+    background-color: #f3e3d6;
+    position: relative;
+}
+
+.swiper .title{
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 'Poppins';
+    width: 90%;
+    text-align: center;
+    color: #fff;
+    font-weight: 400;
+    z-index: 10;
+}
+
+/* --- Base card setup --- */
+.swiper-slide {
+    height: 220px;       /* Gives a fluid base size for mobile */
+    aspect-ratio: 4 / 3; /* Enforces clean rectangular slide proportions */
+    border-radius: 12px;
+    overflow: hidden;    /* Restored to crop image corners to the border-radius */
+    position: relative;
+    
+    /* Active card pop styling properties */
+    transform: scale(0.85) !important; 
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 0.4;
+    
+}
+
+/* Active Center Slide Config */
+.swiper-slide-active {
+    transform: scale(1.12) !important; /* Pop out the middle card slightly */
+    opacity: 1;
+    z-index: 5;
+}
+
+.swiper-slide .info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #fff; 
+    transition: transform 0.4s ease;
+    background: transparent;
+}
+.swiper-slide:hover img {
+    transform: scale(1.05); /* Slight image zoom on hover */
+}
+
+.swiper-slide .info {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+    transform: none;
+    border: none;
+}
+
+/* Navigation Arrow Overrides */
+.swiper-button-next::after,
+.swiper-button-prev::after{
+    display: none;
+}
+
+.swiper-button-next i,
+.swiper-button-prev i{
+    font-size: 40px;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.swiper-button-next i:hover,
+.swiper-button-prev i:hover {
+    color: red;
+}
+
+.swiper-button-next{
+    right: max(20px, 4vw);
+}
+
+.swiper-button-prev{
+    left: max(20px, 4vw);
+}
+
+/* Desktop responsive dimension overrides */
+@media screen and (min-width: 1200px) {
+    .swiper-slide {
+        height: 300px;       /* Increase size on desktop */
+        width: auto;         /* Allow aspect-ratio to dictate width seamlessly */
+        aspect-ratio: 4 / 3; /* Perfectly mirrors your mobile layout aspect math */
+        border-radius: 20px;
+    }
+}
+
+/* Mobile responsive interface overrides */
+@media screen and (max-width: 768px) {
+    header {
+        justify-content: center;
+    }
+    header a {
+        margin: 0 15px;
+        font-size: 14px;
+    }
+    .swiper {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    
+    .swiper-slide .info {
+        padding: 6px 14px;
+        font-size: 11px;
+        bottom: 10px;
+    }
+
+    /* Hides arrows completely on mobile screens */
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none !important;
+    }
+}

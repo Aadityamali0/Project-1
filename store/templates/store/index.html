@@ -1,0 +1,46 @@
+{%extends 'store/navbar.html'%}
+{% load static %}
+
+{% block title %}Thrift Store{% endblock %}
+
+{% block csslink %}
+<!--Font awesome CDN-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<!--Custom CSS-->
+<link rel="stylesheet" href="{% static 'store/index.css' %}">
+{% endblock %}
+
+{% block body %}
+<!-- Swiper -->
+<div class="swiper mySwiper">
+    <div class="swiper-bg"></div>
+    <div class="swiper-wrapper">
+        
+        <!-- Correct dynamic loop over your product objects -->
+        {% for prod in swiper_product %}
+        <div class="swiper-slide">
+            <div class="info">
+                <img src="{{ prod.image.url }}" alt="{{ prod.product_name }}">
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    {% comment %} <button> {% endcomment %}
+        <div class="swiper-button-next"><i class="fas fa-caret-right"></i></div>
+        <div class="swiper-button-prev"><i class="fas fa-caret-left"></i></div>
+    {% comment %} </button> {% endcomment %}
+</div>
+{% endblock %}
+
+{% block js %}
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!--Swiper.js custom config script-->
+<script src="{% static 'store/index.js' %}"></script>
+{% endblock %}
