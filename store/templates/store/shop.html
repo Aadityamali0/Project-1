@@ -1,0 +1,44 @@
+{%extends 'store/navbar.html'%}
+{%load static%}
+{%block title%}
+Shop
+{%endblock%}
+
+{%block csslink%}
+<link rel="stylesheet" href="{% static 'store/shop.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+{%endblock%}
+
+{%block body%}
+
+<div class="category swiper">
+    <div class="swiper-wrapper">
+        {%for cat in category%}
+        <div class="swiper-slider">
+            <a href="/?category={{cat.id}}" class="category-link">{{cat}}</a>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-12 mt-2">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4" id="product-container">
+                {%for product in products%}
+                <div class="col">
+                    <div class="card h-100 w-100">
+                        <img src="{{product.image.url}}" class="card-img-top" alt="{{product.product_name}}"/>
+                        <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title">{{product.product_name}}</h5>
+                        <p class="card-text">Rs. {{product.price}}</p>
+                        <a href="" class="btn btn-primary mt-auto">View</a>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}           
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

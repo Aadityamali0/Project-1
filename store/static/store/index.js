@@ -9,21 +9,26 @@ var swiper = new Swiper(".mySwiper", {
         disableOnInteraction: false,
         pauseOnMouseEnter: true
     },
+    
     breakpoints: {
         // Mobile Layout (3 slides visible)
         0: {
-            slidesPerView: 2.3, 
+            slidesPerView: 1.8, 
+            spaceBetween: 10
+        },
+        468: {
+            slidesPerView: 2.3,
             spaceBetween: 10
         },
         // Tablet Layout
         768: {
-            slidesPerView: 2.5,
-            spaceBetween: 25
+            slidesPerView: 3,
+            spaceBetween: 15
         },
         // Desktop Layout
-        1200: {
+        1080: {
             slidesPerView: 3.7, 
-            spaceBetween: 40
+            spaceBetween: 30
         }
     },
     navigation: {

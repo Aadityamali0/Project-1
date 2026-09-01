@@ -1,0 +1,79 @@
+/* ---------------- CATEGORY ---------------- */
+
+.category{
+    background:#302b2b;
+    padding:12px;
+}
+
+/* Swiper wrapper */
+
+.category .swiper-wrapper{
+    display:flex;
+    align-items:center;
+}
+
+/* Important */
+
+.category .swiper-slide{
+    width:auto;
+}
+
+/* Links */
+
+.category-link{
+
+    display:block;
+
+    padding:8px 18px;
+
+    color:white;
+
+    text-decoration:none;
+
+    white-space:nowrap;
+
+    font-weight:500;
+
+    transition:.3s;
+}
+
+.category-link:hover{
+
+    background: black;
+
+    color:white;
+}
+
+.category-link.active{
+    background:#d8d8d8;
+    color: black;
+}
+
+
+/* ---------------- PRODUCT CARD ---------------- */
+
+.card-img-top{
+
+    height:250px;
+
+    object-fit:cover;
+
+    padding:5px;
+}
+
+.card-body p{
+
+    font-weight:500;
+}
+
+.card-body .btn-primary{
+
+    background:#e63946;
+
+    border:none;
+}
+
+.card-body .btn-primary:hover{
+
+    background:black;
+}
