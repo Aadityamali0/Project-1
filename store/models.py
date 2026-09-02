@@ -16,3 +16,7 @@ class Product(models.Model):
     
     def __str__(self):
         return self.product_name
+
+class SubImages(models.Model):
+    product = models.ForeignKey(Product, on_delete= models.CASCADE, related_name='sub_images')
+    image = models.ImageField(upload_to="store/images")

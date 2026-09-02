@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.container{
+    background-color: white;
+    /* border: solid 1px black; */
+    box-shadow: 1px 1px 10px ;
+}
+
+/* Product section */
+.sproduct{
+    margin: 40px 40px;
+}
+
+/* Main Image */
+.sproduct .main-img{
+    width: 100%;
+    border-radius: 8px;
+    /* background: #f0f3f4; */
+    object-fit: cover;
+    border: solid 1px;
+}
+
+/* Thumbnail Images */
+.small-img-group{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.small-img-col{
+    flex: 1;
+    cursor: pointer;
+    /* width: 100%; */
+    border: solid 1px;
+    /* box-shadow: 1px 1px 5px; */
+    /* border-radius: 5px; */
+}
+
+/* Product Info */
+.sproduct h3{
+    font-size: 2rem;
+}
+
+.sproduct h2{
+    /* color: rgb(255,94,94); */
+    color: #e63946;
+    font-weight: bold;
+}
+
+.sproduct select{
+    display: block;
+    width: 180px;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+.sproduct input{
+    width: 70px;
+    height: 45px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.sproduct input:focus{
+    outline: none;
+}
+
+.buy-btn{
+    padding: 12px 30px;
+    border: none;
+    background: rgb(255,94,94);
+    color: white;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.buy-btn:hover{
+    background: black;
+}
+
+/* Tablet */
+@media (max-width: 768px){
+    .container{
+        padding: 0;
+    }
+    .sproduct{
+        margin-top: 15px;
+        margin-bottom: 0;
+    }
+
+    .sproduct .col-lg-6{
+        margin-top: 30px;
+    }
+
+    .sproduct h3{
+        font-size: 1.8rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px){
+
+    .container{
+        box-shadow : none;
+    }
+    .sproduct{
+        margin: 0;
+    }
+    .sproduct h6{
+        font-size: 14px;
+    }
+
+    .sproduct h3{
+        font-size: 1.5rem;
+        padding: 10px 0;
+    }
+
+    .sproduct h2{
+        font-size: 1.6rem;
+    }
+
+    .sproduct select{
+        width: 100%;
+    }
+
+    .quantity-cart{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .sproduct input{
+        width: 60px;
+        margin-right: 0;
+    }
+
+    .buy-btn{
+        width: 100%;
+    }
+
+    .small-img-group{
+        gap: 8px;
+    }
+}
