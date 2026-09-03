@@ -27,6 +27,8 @@ def shop(request):
     return render (request, 'store/shop.html', params)
 
 def productDetails(request, id, slug):
+    # use slug when both id and slug should match in order to show the product details page
+    # products = get_object_or_404(Product, id=id, slug=slug)
     products = get_object_or_404(Product, id=id)
     
     related_products = Product.objects.filter(

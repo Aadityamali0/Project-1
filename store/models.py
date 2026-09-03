@@ -9,6 +9,7 @@ class Category(models.Model):
     
 class Product(models.Model):
     product_name = models.CharField(max_length=50)
+    # slug = models.SlugField(unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null = True, blank = True)
     description = models.CharField(max_length=200)
     price = models.IntegerField(default=0)
