@@ -10,14 +10,17 @@ Shop
 {%endblock%}
 
 {%block body%}
-
-<div class="category swiper">
-    <div class="swiper-wrapper">
-        {%for cat in category%}
-        <div class="swiper-slide">
-            <a href="{% url 'shop' %}?category={{cat.id}}" class="category-link {% if request.GET.category == cat.id|stringformat:'s' %}active{% endif %}">{{cat}}</a>
+<div class="category-container">
+    <h5 class="cat">Category</h4>
+        
+    <div class="category swiper">
+        <div class="swiper-wrapper">
+            {%for cat in category%}
+            <div class="swiper-slide">
+                <a href="{% url 'shop' %}?category={{cat.id}}" class="category-link {% if request.GET.category == cat.id|stringformat:'s' %}active{% endif %}">{{cat}}</a>
+            </div>
+            {%endfor%}
         </div>
-        {%endfor%}
     </div>
 </div>
 
@@ -41,6 +44,7 @@ Shop
         </div>
     </div>
 </div>
+
 {%endblock%}
 
 {% block js%}

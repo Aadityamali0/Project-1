@@ -1,0 +1,21 @@
+<div class="related-products">
+    <h3 class="slider-title">Related Products</h3>
+    <div class="swiper">
+        <div class="card-wrapper">
+            <ul class="card-list swiper-wrapper">
+                {% for related_products in related_products %}
+                <li class="card-item swiper-slide">
+                    <a href="{% url 'productDetails' related_products.product_name|slugify related_products.id %}" class="card-link">
+                        <img src="{{related_products.image.url}}" alt="{{related_products.product_name}}" class="card-image">
+                        <p class="badge">{{related_products.product_name}}</p>
+                        <h2 class="card-title">Rs. {{related_products.price}}</h2>
+                        <button class="card-button">Add to Cart</button>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</div>
