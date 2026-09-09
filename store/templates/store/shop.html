@@ -11,7 +11,7 @@ Shop
 
 {%block body%}
 <div class="category-container">
-    <h5 class="cat">Category</h4>
+    <h5 class="cat">Category</h5>
         
     <div class="category swiper">
         <div class="swiper-wrapper">
@@ -28,7 +28,7 @@ Shop
     <div class="row">
         <div class="col-lg-12 mt-2">
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4" id="product-container">
-                {%for product in products%}
+                {%for product in product_obj %}
                 <div class="col">
                     <div class="card h-100 w-100">
                         <img src="{{product.image.url}}" class="card-img-top" alt="{{product.product_name}}"/>
@@ -44,6 +44,112 @@ Shop
         </div>
     </div>
 </div>
+
+<!-- paginator -->
+<nav aria-label="Page navigation example" class="mt-3">
+    <ul class="pagination justify-content-center">
+
+        <!-- Previous Button -->
+        {% if product_obj.has_previous %}
+            <li class="page-item">
+
+                {% if request.GET.category %}
+                    <a class="page-link"
+                       href="?category={{ request.GET.category }}&page={{ product_obj.previous_page_number }}">
+                        Previous
+                    </a>
+                {% else %}
+                    <a class="page-link"
+                       href="?page={{ product_obj.previous_page_number }}">
+                        Previous
+                    </a>
+                {% endif %}
+
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#">
+                    Previous
+                </a>
+            </li>
+        {% endif %}
+
+
+        <!-- Page Numbers -->
+        {% for num in product_obj.paginator.page_range %}
+
+            {% if product_obj.number == num %}
+
+                <!-- Active Page -->
+                <li class="page-item active">
+
+                    {% if request.GET.category %}
+                        <a class="page-link"
+                           style="background-color: #e63946; border: none;"
+                           href="?category={{ request.GET.category }}&page={{ num }}">
+                            {{ num }}
+                        </a>
+                    {% else %}
+                        <a class="page-link"
+                           style="background-color: #e63946; border: none;"
+                           href="?page={{ num }}">
+                            {{ num }}
+                        </a>
+                    {% endif %}
+
+                </li>
+
+            {% else %}
+
+                <!-- Other Pages -->
+                <li class="page-item">
+
+                    {% if request.GET.category %}
+                        <a class="page-link"
+                           href="?category={{ request.GET.category }}&page={{ num }}">
+                            {{ num }}
+                        </a>
+                    {% else %}
+                        <a class="page-link"
+                           href="?page={{ num }}">
+                            {{ num }}
+                        </a>
+                    {% endif %}
+
+                </li>
+
+            {% endif %}
+
+        {% endfor %}
+
+
+        <!-- Next Button -->
+        {% if product_obj.has_next %}
+            <li class="page-item">
+
+                {% if request.GET.category %}
+                    <a class="page-link"
+                       href="?category={{ request.GET.category }}&page={{ product_obj.next_page_number }}">
+                        Next
+                    </a>
+                {% else %}
+                    <a class="page-link"
+                       href="?page={{ product_obj.next_page_number }}">
+                        Next
+                    </a>
+                {% endif %}
+
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#">
+                    Next
+                </a>
+            </li>
+        {% endif %}
+
+    </ul>
+</nav>
 
 {%endblock%}
 

@@ -67,11 +67,16 @@
 }
 .related-products .card-list .card-link .badge{
     /* color: blue; */
+    display: block;
+    width: 100%;
     color: black;
-    padding: 5px 10px;
+    padding: 10px 10px;
     font-size: 15px;
     font-weight: 600;
-    margin: 5px auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
     /* background: #DDE4FF; */
     /* width: fit-content; */
     /* border-radius: 50px; */
@@ -151,7 +156,8 @@
         display: none;
     }
     .related-products .card-list .card-link .badge{
-        font-size: 13px;
+        font-size: 15px;
+        /* padding-top: 15px; */
     }
     .related-products .card-list .card-item .card-link{
         padding: 2px;
@@ -167,5 +173,9 @@
 @media (max-width: 576px){
     .related-products{
         margin-top: 0;
+    }
+     .related-products .card-list .card-link .badge{
+        font-size: 11px;
+        /* padding-top: 15px; */
     }
 }
