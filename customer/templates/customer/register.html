@@ -1,0 +1,127 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'customer/styles-light.css'%}">
+<!-- Swap to styles-dark.css for the dark theme -->
+</head>
+<body>
+
+<div class="stage">
+
+  <div class="form-side">
+    <div class="form-inner">
+
+      <!-- LOGO: replace this placeholder with your own mark, e.g.
+           <img src="logo.svg" alt="Your company" width="60" height="60"> -->
+      <div class="logo-slot" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="4"/>
+          <path d="M3 15l4.5-4.5a2 2 0 0 1 2.8 0L15 15"/>
+          <circle cx="16.5" cy="8.5" r="1.5"/>
+        </svg>
+      </div>
+
+      <h1 class="heading">Create account</h1>
+
+      <form id="register-form" novalidate method="POST" action = "{% url 'customer:register' %}">
+        {% csrf_token %}
+
+        {% if messages %}
+        <div class="status show" id="register-status">
+          {% for message in messages %}
+            <p class="msg msg-{{ message.tags }}">{{ message }}</p>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="status" id="register-status"></div>
+        {% endif %}
+
+        <div class="field">
+          <label for="reg-fullname">Full name</label>
+          <div class="field-input">
+            <input id="reg-fullname" name="fullname" type="text" placeholder="Your name" autocomplete="name" required minlength="2">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="reg-username">Username</label>
+          <div class="field-input">
+            <input id="reg-username" name="username" type="text" placeholder="thrift_00" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_\]+">
+          </div>
+          <div class="hint" data-hint-for="reg-username"></div>
+        </div>
+
+        <div class="field">
+          <label for="reg-number">Phone Number</label>
+          <div class="field-input">
+            <input id="reg-number" name="number" type="tel" placeholder="98********" inputmode="numeric" maxlength="10" pattern="\d{10}" autocomplete="tel" required>
+          </div>
+          <div class="hint" data-hint-for="reg-number">Enter a 10-digit phone number.</div>
+        </div>
+
+        <div class="field">
+          <label for="reg-email">Email</label>
+          <div class="field-input">
+            <input id="reg-email" name="email" type="email" placeholder="thrift@example.com" autocomplete="email" required>
+          </div>
+          <div class="hint" data-hint-for="reg-email"></div>
+        </div>
+
+        <div class="field">
+          <label for="reg-password">Password</label>
+          <div class="field-input">
+            <input id="reg-password" name="password" type="password" class="has-toggle" placeholder="••••••••" autocomplete="new-password" required minlength="8">
+            <button type="button" class="toggle-visibility" data-target="reg-password" data-visible="false" aria-label="Show password">
+              <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.9 10.9 0 0 1 12 5c7 0 10.5 7 10.5 7a13.6 13.6 0 0 1-3.1 3.9M6.4 6.4C3.5 8.2 1.5 12 1.5 12s3.5 7 10.5 7a10.9 10.9 0 0 0 4.6-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="reg-confirm">Confirm password</label>
+          <div class="field-input">
+            <input id="reg-confirm" name="confirmPassword" type="password" class="has-toggle" placeholder="••••••••" autocomplete="new-password" required minlength="8">
+            <button type="button" class="toggle-visibility" data-target="reg-confirm" data-visible="false" aria-label="Show password">
+              <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.9 10.9 0 0 1 12 5c7 0 10.5 7 10.5 7a13.6 13.6 0 0 1-3.1 3.9M6.4 6.4C3.5 8.2 1.5 12 1.5 12s3.5 7 10.5 7a10.9 10.9 0 0 0 4.6-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+            </button>
+          </div>
+          <div class="hint" data-hint-for="reg-confirm">At least 8 characters. Both passwords must match.</div>
+        </div>
+
+        <button class="submit" type="submit">Create account</button>
+      </form>
+
+      <p class="switch-line">Already have an account? <a href="{% url 'customer:login' %}">Sign in</a></p>
+
+    </div>
+  </div>
+
+  <div class="image-side" aria-hidden="true">
+    <div class="collage-track">
+      <div class="cover cover-1"><img src="swiper/onepiece.jpeg" alt="Style 01"><span>Style 01</span></div>
+      <div class="cover cover-2"><img src="swiper/black.jpeg" alt="Style 02"><span>Style 02</span></div>
+      <div class="cover cover-3"><img src="swiper/images.png" alt="Style 03"><span>Style 03</span></div>
+      <div class="cover cover-4"><img src="images/style-04.jpg" alt="Style 04"><span>Style 04</span></div>
+      <div class="cover cover-5"><img src="images/style-05.jpg" alt="Style 05"><span>Style 05</span></div>
+      <div class="cover cover-6"><img src="images/style-06.jpg" alt="Style 06"><span>Style 06</span></div>
+      <div class="cover cover-7"><img src="images/style-07.jpg" alt="Style 07"><span>Style 07</span></div>
+      <div class="cover cover-8"><img src="images/style-08.jpg" alt="Style 08"><span>Style 08</span></div>
+      <div class="cover cover-9"><img src="images/style-09.jpg" alt="Style 09"><span>Style 09</span></div>
+    </div>
+    <div class="fog-overlay"></div>
+  </div>
+
+</div>
+
+<script src="{% static 'customer/script.js' %}"></script>
+</body>
+</html>

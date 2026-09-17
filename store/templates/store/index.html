@@ -24,7 +24,7 @@
         {% for prod in swiper_product %}
         <div class="swiper-slide">
             <div class="info">
-                <a href="{% url 'productDetails' prod.product_name|slugify prod.id %}"><img src="{{ prod.image.url }}" alt="{{ prod.product_name }}"></a>
+                <a href="{% url 'store:productDetails' prod.product_name|slugify prod.id %}"><img src="{{ prod.image.url }}" alt="{{ prod.product_name }}"></a>
             </div>
         </div>
         {% endfor %}

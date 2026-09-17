@@ -1,0 +1,326 @@
+/* =========================================================
+   LIGHT THEME — for login.html / register.html
+   e-commerce styling, images in a 3x3 grid, gently bent,
+   drifting on a top-right ⇄ top-left diagonal.
+   ========================================================= */
+
+:root{
+  --bg-page: #f6f5f1;
+  --panel-bg: #ffffff;
+  --panel-grid-line: rgba(26,26,26,0.035);
+  --ink: #1a1a1a;
+  --ink-soft: #74716a;
+  --accent: #1f7a5c;
+  --accent-strong: #145940;
+  --accent-glow: rgba(31,122,92,0.16);
+  --input-bg: #f7f6f2;
+  --input-border: #e2e0d6;
+  --error: #c0392b;
+  --ok: #1f7a5c;
+  --radius: 22px;
+}
+
+*{ box-sizing: border-box; }
+html, body{ margin:0; padding:0; min-height:100vh; }
+
+body{
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--bg-page);
+  min-height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 32px 20px;
+}
+
+.stage{
+  width:100%;
+  max-width: 1020px;
+  display:grid;
+  grid-template-columns: 1fr 1.05fr;
+  background: var(--panel-bg);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: 0 30px 70px -35px rgba(26,26,26,0.35), 0 0 0 1px rgba(26,26,26,0.04);
+  min-height: 620px;
+}
+
+/* ---------------- form side ---------------- */
+
+.form-side{
+  position:relative;
+  padding: 44px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-image:
+    linear-gradient(var(--panel-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--panel-grid-line) 1px, transparent 1px);
+  background-size: 34px 34px;
+  background-position: center;
+}
+
+.form-inner{
+  width:100%;
+  max-width: 360px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.logo-slot{
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  border: 1.5px dashed rgba(26,26,26,0.22);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.logo-slot svg{ width:26px; height:26px; }
+
+.heading{
+  font-family: 'Oswald', 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-size: clamp(1.7rem, 2.4vw, 2.1rem);
+  margin: 0 0 30px;
+  color: var(--ink);
+}
+
+form{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap: 16px;
+  text-align:left;
+}
+
+.field{ display:flex; flex-direction:column; gap:6px; }
+.field label{ font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); }
+.field-input{ position:relative; display:flex; align-items:center; }
+
+.field input{
+  width:100%;
+  font-family:'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline:none;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.field input.has-toggle{ padding-right: 44px; }
+.field input::placeholder{ color: #a7a49a; }
+.field input:focus{
+  border-color: var(--accent);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+.field input.touched:invalid{ border-color: var(--error); }
+
+.toggle-visibility{
+  position:absolute;
+  right:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:28px; height:28px;
+  background:none; border:none;
+  cursor:pointer;
+  color: var(--ink-soft);
+  border-radius: 6px;
+}
+.toggle-visibility:hover{ color: var(--ink); background: rgba(26,26,26,0.06); }
+.toggle-visibility svg{ width:19px; height:19px; }
+.toggle-visibility .icon-off{ display:none; }
+.toggle-visibility[data-visible="true"] .icon-on{ display:none; }
+.toggle-visibility[data-visible="true"] .icon-off{ display:block; }
+
+.hint{ font-size: 0.74rem; color: var(--ink-soft); min-height: 1em; }
+.hint.error{ color: var(--error); }
+
+.aux-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+.aux-row a{ color: var(--accent); text-decoration:none; font-weight:600; }
+.aux-row a:hover{ text-decoration: underline; }
+
+.submit{
+  margin-top: 4px;
+  background: var(--accent);
+  color: #fff;
+  border:none;
+  border-radius: 10px;
+  padding: 13px 18px;
+  font-family:'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor:pointer;
+  transition: background .15s ease, transform .1s ease;
+}
+.submit:hover{ background: var(--accent-strong); }
+.submit:active{ transform: translateY(1px); }
+
+.switch-line{
+  margin-top: 22px;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  text-align:center;
+}
+.switch-line a{ color: var(--accent); text-decoration:none; font-weight:600; }
+.switch-line a:hover{ text-decoration: underline; }
+
+.status{
+  margin-top: 14px;
+  font-size: 0.84rem;
+  padding: 10px 12px;
+  border-radius: 8px;
+  display:none;
+  width:100%;
+  text-align:left;
+}
+.status.show{ display:block; }
+.status.ok{ background: rgba(31,122,92,0.1); color: var(--ok); }
+.status.bad{ background: rgba(192,57,43,0.1); color: var(--error); }
+
+/* Django messages framework — one <p class="msg msg-{{ message.tags }}">
+   per message, rendered inside #register-status / #login-status */
+.status .msg{
+  margin: 0 0 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+.status .msg:last-child{ margin-bottom: 0; }
+.status .msg-success{ background: rgba(31,122,92,0.1); color: var(--ok); }
+.status .msg-error{ background: rgba(192,57,43,0.1); color: var(--error); }
+.status .msg-warning{ background: rgba(202,138,4,0.12); color: #8a6100; }
+.status .msg-info{ background: rgba(59,109,198,0.12); color: #2f5fae; }
+.status .msg-debug{ background: rgba(116,113,106,0.12); color: var(--ink-soft); }
+
+/* ---------------- image side (desktop only) — 3 x 3 grid ---------------- */
+
+.image-side{
+  position:relative;
+  overflow:hidden;
+  background: #efece3;
+}
+
+.collage-track{
+  position:absolute;
+  inset: -6%;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 14px;
+  animation: driftDiagonal 9s ease-in-out infinite;
+}
+
+/* each tile is a landscape image, gently bent in 3D.
+   Box size/shape comes from the grid — untouched below. */
+.cover{
+  position:relative;
+  overflow:hidden;
+  border-radius: 12px;
+  box-shadow: 0 16px 30px -16px rgba(26,26,26,0.35);
+  transform: perspective(900px) rotateY(-6deg) rotateX(1deg);
+  transform-style: preserve-3d;
+}
+.cover:nth-child(3n+2){
+  transform: perspective(900px) rotateY(6deg) rotateX(-1deg);
+}
+.cover:nth-child(3n){
+  transform: perspective(900px) rotateY(-3deg) rotateX(2deg);
+}
+
+/* the image fills the box completely and sits slightly zoomed in */
+.cover img{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.08);
+}
+
+/* a subtle color-graded tint over the photo, per tile */
+.cover::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+}
+.cover-1::before{ background: linear-gradient(135deg, #e8b48f, #c9764a); }
+.cover-2::before{ background: linear-gradient(135deg, #9fb7a8, #4f7a67); }
+.cover-3::before{ background: linear-gradient(135deg, #d9c08f, #a67c3d); }
+.cover-4::before{ background: linear-gradient(135deg, #a9c1d9, #4f7098); }
+.cover-5::before{ background: linear-gradient(135deg, #d9a6a6, #a35656); }
+.cover-6::before{ background: linear-gradient(135deg, #c9c2a8, #8a7f56); }
+.cover-7::before{ background: linear-gradient(135deg, #b7c9a8, #6f8a56); }
+.cover-8::before{ background: linear-gradient(135deg, #cfa8c9, #8a5688); }
+.cover-9::before{ background: linear-gradient(135deg, #a8c2c9, #4f7f8a); }
+
+/* readable label on top of the photo */
+.cover span{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  z-index:2;
+  padding: 12px 14px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.95);
+  background: linear-gradient(0deg, rgba(0,0,0,0.55), rgba(0,0,0,0));
+}
+
+.fog-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg, rgba(246,245,241,0.95) 0%, rgba(246,245,241,0.25) 26%, rgba(246,245,241,0.06) 55%, rgba(246,245,241,0.35) 100%),
+    linear-gradient(rgba(246,245,241,0.08), rgba(246,245,241,0.18));
+}
+
+@keyframes driftDiagonal{
+  0%   { transform: translate(4%, -10px); }
+  50%  { transform: translate(-4%, 10px); }
+  100% { transform: translate(4%, -10px); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .collage-track{ animation: none; }
+}
+
+/* ---------------- responsive ---------------- */
+
+@media (max-width: 860px){
+  .stage{
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    min-height: unset;
+  }
+  .image-side{ display:none; }
+  .form-side{ padding: 36px 30px; }
+}
+
+@media (max-width: 420px){
+  body{ padding: 18px 12px; }
+  .form-side{ padding: 28px 20px; }
+}

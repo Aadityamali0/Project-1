@@ -17,7 +17,7 @@ Shop
         <div class="swiper-wrapper">
             {%for cat in category%}
             <div class="swiper-slide">
-                <a href="{% url 'shop' %}?category={{cat.id}}" class="category-link {% if request.GET.category == cat.id|stringformat:'s' %}active{% endif %}">{{cat}}</a>
+                <a href="{% url 'store:shop' %}?category={{cat.id}}" class="category-link {% if request.GET.category == cat.id|stringformat:'s' %}active{% endif %}">{{cat}}</a>
             </div>
             {%endfor%}
         </div>
@@ -35,7 +35,7 @@ Shop
                         <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title">{{product.product_name}}</h5>
                         <p class="card-text">Rs. {{product.price}}</p>
-                        <a href="{% url 'productDetails' product.product_name|slugify product.id %}" class="btn btn-primary mt-auto">View</a>
+                        <a href="{% url 'store:productDetails' product.product_name|slugify product.id %}" class="btn btn-primary mt-auto">View</a>
                         </div>
                     </div>
                 </div>
