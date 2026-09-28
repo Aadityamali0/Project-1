@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from . models import Product, Category
 from django.core.paginator import Paginator
 
-# Create your views here.
 def index(request):
     product = Product.objects.all().order_by('?')
     params = {
@@ -27,6 +26,9 @@ def index(request):
 #     }
 #     return render (request, 'store/shop.html', params)
 
+def contact(request):
+    return render(request, 'store/contact.html')
+    
 def shop(request):
     categories = Category.objects.all()
     
@@ -42,6 +44,7 @@ def shop(request):
     page_number = request.GET.get('page')
     
     product_obj = paginator.get_page(page_number)
+    
     
     params = {
         'category' : categories,

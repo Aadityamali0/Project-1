@@ -11,7 +11,7 @@ def register(request):
         username = request.POST.get('username').strip()
         phone_number = request.POST.get('number').strip()
         email = request.POST.get('email', '').strip()
-        password = request.POST.get('password')
+        password = request.POST.get('password').strip()
         confirm_password = request.POST.get('confirmPassword')
 
         if len(username) >= 20 or not re.match(r'^[A-Za-z0-9_]+$', username):
@@ -63,9 +63,7 @@ def user_login(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-        
-        print(username)
-        print(bool(password))
+
         user = authenticate(
             request,
             username = username,

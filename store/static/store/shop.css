@@ -1,7 +1,7 @@
 /* ---------------- CATEGORY ---------------- */
 
 .category{
-    background:#302b2b;
+    background: var(--brand-dark);
     padding:12px;
 }
 
@@ -9,7 +9,7 @@
 .category-container {
     display: flex;
     align-items: center;
-    background-color: #2c2828;
+    background-color: var(--brand-dark);
     /* padding: 10px 20px; */
 }
 
@@ -61,8 +61,8 @@
 }
 
 .category-link.active{
-    background:#d8d8d8;
-    color: black;
+    background: var(--brand-gray-light);
+    color: var(--brand-black);
 }
 
 
@@ -84,12 +84,26 @@
 
 .card-body .btn-primary{
 
-    background:#e63946;
+    background: #e63946;
 
     border:none;
 }
 
 .card-body .btn-primary:hover{
 
-    background:black;
+    background: var(--brand-dark);
+}
+
+/* ---------------- PAGINATION ICONS ---------------- */
+
+.pagination .page-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination .page-link .material-symbols-rounded{
+    font-size: 20px;
+    line-height: 1;
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 20;
 }

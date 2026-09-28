@@ -23,35 +23,45 @@
 
   // ---- login form ----
   const loginForm = document.getElementById('login-form');
-  if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const username = document.getElementById('login-username');
-      const password = document.getElementById('login-password');
-      username.classList.add('touched');
-      password.classList.add('touched');
 
-      let ok = true;
-      if (!username.value.trim()) ok = false;
+if (loginForm) {
+  loginForm.addEventListener('submit', (e) => {
+    const username = document.getElementById('login-username');
+    const password = document.getElementById('login-password');
+    const status = document.getElementById('login-status');
+    
+    // 1. Reset visual states immediately upon clicking submit
+    username.classList.remove('touched', 'error');
+    password.classList.remove('touched', 'error');
+    status.classList.remove('ok', 'bad');
+    
+    let ok = true;
 
-      if (password.value.length < 8) {
-        setHint('login-password', 'Password must be at least 8 characters.', true);
-        ok = false;
-      } else {
-        setHint('login-password', '', false);
-      }
+    // 2. Validate Username
+    if (!username.value.trim()) {
+      username.classList.add('touched', 'error'); // Only mark if bad
+      ok = false;
+    }
 
-      const status = document.getElementById('login-status');
-      status.classList.remove('ok', 'bad');
-      if (ok) {
-        status.textContent = 'Signed in — welcome back, ' + username.value.trim() + '.';
-        status.classList.add('show', 'ok');
-      } else {
-        status.textContent = 'Please fill in both fields correctly.';
-        status.classList.add('show', 'bad');
-      }
-    });
-  }
+    // 3. Validate Password
+    if (password.value.length >= 20) {
+      setHint('login-password', 'Password must not be more than 20 characters.', true);
+      password.classList.add('touched', 'error'); // Only mark if bad
+      ok = false;
+    } else {
+      setHint('login-password', '', false);
+    }
+
+    // 4. Handle failed validation block
+    if (!ok) {
+      e.preventDefault(); 
+      status.textContent = 'Please fill in both fields correctly.';
+      status.classList.add('show', 'bad');
+      return;
+    }
+  });
+}
+
 
   // ---- register form ----
   const registerForm = document.getElementById('register-form');

@@ -6,18 +6,18 @@
 {% block csslink %}
 <!--Font awesome CDN-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-<!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-<!--Custom CSS-->
 <link rel="stylesheet" href="{% static 'store/index.css' %}">
 {% endblock %}
 
 {% block body %}
 <!-- Swiper -->
 <div class="swiper mySwiper">
-    <div class="swiper-bg"></div>
+    <!-- Two stacked, blurred backdrop layers. JS crossfades between them
+         so the background always echoes the active product's photo -
+         same idea as the "blurred hero" look you referenced. -->
+    <div class="swiper-bg" id="swiperBg1"></div>
+    <div class="swiper-bg" id="swiperBg2"></div>
     <div class="swiper-wrapper">
         
         <!-- Correct dynamic loop over your product objects -->

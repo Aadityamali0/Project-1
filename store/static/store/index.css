@@ -14,8 +14,51 @@ body {
     width: 100%;
     padding-top: 60px;
     padding-bottom: 90px;
-    background-color: #f3e3d6;
+    background-color: var(--brand-cream); /* fallback while the first bg image loads */
     position: relative;
+    overflow: hidden; /* keeps the blurred backdrop from bleeding past the section */
+}
+
+/* Blurred backdrop that echoes the active slide's photo (see index.js).
+   Two stacked layers (#swiperBg1 / #swiperBg2 in index.html) so
+   switching images can crossfade instead of popping instantly. */
+.swiper-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(40px) saturate(1.3) brightness(0.85);
+    transform: scale(1.2); /* hides the soft blurred edge from view */
+    opacity: 0;
+    transition: opacity .6s ease;
+    z-index: 0;
+}
+.swiper-bg.is-active{
+    opacity: 1;
+}
+/* Tint so text/arrows stay legible over any product photo */
+.swiper::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26,26,26,.35), rgba(26,26,26,.55));
+    z-index: 1;
+    pointer-events: none;
+}
+
+.swiper-wrapper,
+.swiper .title{
+    position: relative;
+    z-index: 2;
+}
+
+/* Just lift the arrows above the blurred backdrop/tint - don't touch
+   `position`. Swiper's own CSS already sets these to `position: absolute;
+   top: 50%` for vertical centering; overriding that to `relative` is
+   what breaks their centering and can push the right one out of view. */
+.swiper-button-next,
+.swiper-button-prev{
+    z-index: 2;
 }
 
 .swiper .title{
@@ -23,7 +66,7 @@ body {
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 'Poppins';
+    font-family: 'Poppins', sans-serif; /* was invalid: font-size: 'Poppins' */
     width: 90%;
     text-align: center;
     color: #fff;
@@ -31,14 +74,22 @@ body {
     z-index: 10;
 }
 
-/* --- Base card setup --- */
+/* --- Base card setup ---
+   NOTE: Swiper sets an inline pixel `width` on each slide whenever
+   slidesPerView is a number (see index.js), which conflicts with
+   `aspect-ratio` here (a box can't honor both an explicit width AND
+   an explicit height AND a ratio at once - the browser just drops
+   the ratio). That's what was making the containers different sizes
+   per image. Fixing it by only fixing `height` here and letting
+   Swiper compute the width - every slide then gets an identical,
+   fixed-size box regardless of the source image's own dimensions. */
 .swiper-slide {
-    height: 220px;       /* Gives a fluid base size for mobile */
-    aspect-ratio: 4 / 3; /* Enforces clean rectangular slide proportions */
+    height: 220px;        /* fixed container height (mobile default) */
     border-radius: 12px;
-    overflow: hidden;    /* Restored to crop image corners to the border-radius */
+    overflow: hidden;     /* crops image corners to the border-radius */
     position: relative;
-    
+    background-color: transparent; /* was a solid letterbox color - now lets the blurred backdrop show through any gap */
+
     /* Active card pop styling properties */
     transform: scale(0.85) !important; 
     transition: transform 0.4s ease, opacity 0.4s ease;
@@ -61,13 +112,18 @@ body {
     height: 100%;
 }
 
+/* object-fit was `contain`, which leaves empty space on two sides
+   whenever the photo's own ratio doesn't match the slide box - that's
+   the white/cream strip you were seeing next to the sneaker photo.
+   `cover` fills the entire box edge-to-edge (cropping slightly if
+   needed) so no background ever shows through the image itself. */
 .swiper-slide img {
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    background-color: #fff; 
+    object-fit: cover;
+    background-color: transparent;
     transition: transform 0.4s ease;
-    background: transparent;
 }
 .swiper-slide:hover img {
     transform: scale(1.05); /* Slight image zoom on hover */
@@ -100,7 +156,7 @@ body {
 
 .swiper-button-next i:hover,
 .swiper-button-prev i:hover {
-    color: red;
+    color: var(--brand-red);
 }
 
 .swiper-button-next{
@@ -114,9 +170,7 @@ body {
 /* Desktop responsive dimension overrides */
 @media screen and (min-width: 1080px) {
     .swiper-slide {
-        height: 300px;    
-        width: auto;        
-        aspect-ratio: 4 / 3;
+        height: 300px;
         border-radius: 20px;
     }
 }

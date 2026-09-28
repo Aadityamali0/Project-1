@@ -12,12 +12,12 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
     
-class LoginImageGroup(models.Model):
-    name = models.CharField(default="Login and Register Image")
+# class LoginImageGroup(models.Model):
+#     name = models.CharField(default="Login and Register Image")
     
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
-class IndividualImage(models.Model):
-    group = models.ForeignKey(LoginImageGroup, on_delete=models.CASCADE, related_name="images")
-    image = models.ImageField(upload_to="customer/images")
+# class IndividualImage(models.Model):
+#     group = models.ForeignKey(LoginImageGroup, on_delete=models.CASCADE, related_name="images")
+#     image = models.ImageField(upload_to="customer/images")
