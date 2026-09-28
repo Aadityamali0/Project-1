@@ -57,12 +57,15 @@ cartItems.addEventListener('click', e => {
   }
 
   const deleteBtn = e.target.closest('.delete-btn');
+
   if (deleteBtn) {
     const row = deleteBtn.closest('.cart-item');
+
     row.classList.add('removing');
+
     row.addEventListener('transitionend', () => {
-      row.remove();
-      recalc();
+        row.remove();
+        recalc();
     }, { once: true });
   }
 });

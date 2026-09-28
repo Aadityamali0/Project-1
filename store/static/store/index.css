@@ -177,13 +177,6 @@ body {
 
 /* Mobile responsive interface overrides */
 @media screen and (max-width: 568px) {
-    header {
-        justify-content: center;
-    }
-    header a {
-        margin: 0 15px;
-        font-size: 14px;
-    }
     .swiper {
         padding-top: 40px;
         padding-bottom: 40px;

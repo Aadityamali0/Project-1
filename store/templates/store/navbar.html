@@ -30,12 +30,8 @@
       </div>
 
       <a href="{% url 'cart:cart' %}" class="cart-link" aria-label="Cart">
-        {% if request.user.is_authenticated %}
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.4 12.2a1.5 1.5 0 0 0 1.5 1.3h8.3a1.5 1.5 0 0 0 1.47-1.2L21 8H6"/></svg>
         <span class="cart-count" id="cartCount">{{cart_count}}</span>
-        {% else %}
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.4 12.2a1.5 1.5 0 0 0 1.5 1.3h8.3a1.5 1.5 0 0 0 1.47-1.2L21 8H6"/></svg>
-        {% endif %}
       </a>
 
       <div class="user-block">
@@ -46,10 +42,10 @@
         <div class="user-meta">
           <span class="user-name">{{user.username}}</span>
           <a class="logout-btn" href="{% url 'customer:logout' %}">Log out</a>
-          {% else %}
-          <a class="login-btn" href="{% url 'customer:login' %}">Log in</a>
-          {% endif %}
         </div>
+        {% else %}
+        <a class="login-btn" href="{% url 'customer:login' %}">Log in</a>
+        {% endif %}
       </div>
 
       <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobilePanel">

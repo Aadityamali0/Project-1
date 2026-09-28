@@ -13,23 +13,18 @@
 {% block body %}
 <!-- Swiper -->
 <div class="swiper mySwiper">
-    <!-- Two stacked, blurred backdrop layers. JS crossfades between them
-         so the background always echoes the active product's photo -
-         same idea as the "blurred hero" look you referenced. -->
     <div class="swiper-bg" id="swiperBg1"></div>
-    <div class="swiper-bg" id="swiperBg2"></div>
-    <div class="swiper-wrapper">
-        
-        <!-- Correct dynamic loop over your product objects -->
-        {% for prod in swiper_product %}
-        <div class="swiper-slide">
-            <div class="info">
-                <a href="{% url 'store:productDetails' prod.product_name|slugify prod.id %}"><img src="{{ prod.image.url }}" alt="{{ prod.product_name }}"></a>
+        <div class="swiper-bg" id="swiperBg2"></div>
+        <div class="swiper-wrapper">
+            <!-- Correct dynamic loop over product objects -->
+            {% for prod in swiper_product %}
+            <div class="swiper-slide">
+                <div class="info">
+                    <a href="{% url 'store:productDetails' prod.product_name|slugify prod.id %}"><img src="{{ prod.image.url }}" alt="{{ prod.product_name }}"></a>
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-
-    </div>
     {% comment %} <button> {% endcomment %}
         <div class="swiper-button-next"><i class="fas fa-caret-right"></i></div>
         <div class="swiper-button-prev"><i class="fas fa-caret-left"></i></div>
