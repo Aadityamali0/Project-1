@@ -86,7 +86,10 @@
       <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
       <div class="summary-row"><span>Shipping</span><span>Free</span></div>
       <div class="summary-row summary-total"><span>Total</span><span id="summaryTotal">$0.00</span></div>
-      <button class="checkout-btn">Checkout</button>
+      <form action="{% url 'order_tracker:place_order' %}" method="POST">
+        {% csrf_token %}
+        <button class="checkout-btn" type="submit">Checkout</button>
+      </form>
       <a href="{% url 'store:shop' %}" class="continue-link">Continue shopping</a>
     </aside>
   </div>

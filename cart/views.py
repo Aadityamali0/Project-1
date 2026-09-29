@@ -55,7 +55,7 @@ def delete_cart_item(request, id):
     return redirect('cart:cart')
 
 @require_POST
-def updaate_quantity(request, id):
+def update_quantity(request, id):
     if request.user.is_authenticated:
         quantity = int(request.POST.get('quantity'))
         cart_item = get_object_or_404(
@@ -68,3 +68,4 @@ def updaate_quantity(request, id):
         cart_item.quantity = quantity
         cart_item.save()
     return redirect ("cart:cart")
+

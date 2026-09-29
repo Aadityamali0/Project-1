@@ -1,0 +1,31 @@
+{% extends 'store/navbar.html' %}
+{% load static %}
+
+{% block title %}My Orders{% endblock %}
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'order/order.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="orders-page">
+  <h1>My orders</h1>
+  {% for order in orders %}
+  <div class="order-card">
+    <div class="order-card-head">
+      <span>Order #{{ order.id }} &middot; {{ order.created_at|date:"M d, Y" }}</span>
+      <span class="order-status order-status-{{ order.status }}">{{ order.get_status_display }}</span>
+    </div>
+    <ul>
+      {% for item in order.items.all %}
+      <li>{{ item.product_name }} &times; {{ item.quantity }} <span>${{ item.line_total|floatformat:2 }}</span></li>
+      {% endfor %}
+    </ul>
+    <div class="order-card-total">Total: ${{ order.total_price|floatformat:2 }}</div>
+  </div>
+  {% empty %}
+  <p>You haven't placed any orders yet. <a href="{% url 'store:shop' %}">Continue shopping</a></p>
+  {% endfor %}
+</div>
+{% endblock %}
+

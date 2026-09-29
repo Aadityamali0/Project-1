@@ -9,5 +9,5 @@ urlpatterns = [
     #functions when user clicks 'cart' icon
     path('user-cart-details/', views.cart, name='cart'),
     path('delete/<int:id>/', views.delete_cart_item, name='delete_cart_item'),
-    path('update/<int:id>/', views.updaate_quantity, name='update_quantity'),
+    path('update/<int:id>/', views.update_quantity, name='update_quantity'),
 ]
